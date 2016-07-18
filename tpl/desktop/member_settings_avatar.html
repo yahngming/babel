@@ -1,0 +1,58 @@
+{% include 'common/head.html' %}
+{% include 'common/top.html' %}
+    <div id="Wrapper">
+    <div id="Main">
+        <div id="Sidebar">   
+        </div>
+        <div id="Rightbar">
+            {% include 'rightbar/user.html' %}
+        </div>
+        <div id="Content">
+            <div class="box">
+                <div class="cell">
+                    <span class="fade"><a href="/">{{ site.title }}</a> <span class="chevron">&nbsp;›&nbsp;</span> <a href="/settings">{{ l10n.settings }}</a> <span class="chevron">&nbsp;›&nbsp;</span> {{ l10n.upload_new_avatar }}</span>
+                </div>
+
+                <div class="cell">
+                <table cellpadding="5" cellspacing="0" border="0">
+                    <tr>
+                        <td width="80" align="right">
+                            {{ l10n.current_avatar }}
+                        </td>
+                        <td width="200" align="left">
+                            {{ member|avatar:"large" }}&nbsp; 
+                            {{ member|avatar:"normal" }}&nbsp;
+                            {{ member|avatar:"mini" }}&nbsp;
+                        </td>
+                    </tr>
+                </table>
+                </div>
+                <div class="inner">
+                    <form enctype="multipart/form-data" action="/settings/avatar" method="post">
+                    <span class="fade">{{ l10n.avatar_tip }}</span>
+                    <div class="sep5"></div>
+                    <table cellpadding="5" cellspacing="0" border="0">
+                        <tr>
+                            <td width="80" align="right">
+                                {{ l10n.choose_file }}
+                            </td>
+                            <td width="200" align="left">
+                                <input type="file" name="avatar" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="80" align="right">
+                            </td>
+                            <td width="200" align="left">
+                                <input type="submit" class="super normal button" value="{{ l10n.upload }}" />
+                            </td>
+                        </tr>
+                    </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <div class="c"></div>
+    </div>
+    </div>
+{% include 'common/bottom.html' %}

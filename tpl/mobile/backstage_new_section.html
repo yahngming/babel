@@ -1,0 +1,58 @@
+{% include 'common/head.html' %}
+{% include 'common/top.html' %}
+    <div id="Main">
+        <div class="cell">
+            <form action="/backstage/new/section" method="post">
+            {% if errors %}
+            <strong>{{ l10n.resolve_errors }}</strong>
+            <div class="sep10"></div>
+            <ul>
+                {% if section_name_error %}
+                <li>{{ section_name_error_message }}</li>
+                {% endif %}
+                {% if section_title_error %}
+                <li>{{ section_title_error_message }}</li>
+                {% endif %}
+                {% if section_title_alternative_error %}
+                <li>{{ section_title_alternative_error_message }}</li>
+                {% endif %}
+            </ul>
+            <div class="sep5"></div>
+            {% endif %}
+            <table cellpadding="5" cellspacing="0" border="0">
+                <tr>
+                    <td width="80" align="right">
+                        {{ l10n.section_name }}
+                    </td>
+                    <td width="200" align="left">
+                        <input type="text" class="sl" name="name" value="{{ section_name|escape }}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td width="80" align="right">
+                        {{ l10n.title }}
+                    </td>
+                    <td width="200" align="left">
+                        <input type="text" class="sl" name="title" value="{{ section_title|escape }}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td width="80" align="right">
+                        {{ l10n.subtitle }}
+                    </td>
+                    <td width="200" align="left">
+                        <input type="text" class="sl" name="title_alternative" value="{{ section_title_alternative|escape }}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td width="80" align="right">
+                    </td>
+                    <td width="200" align="left">
+                        <input type="submit" value="{{ l10n.create }}"/>
+                    </td>
+                </tr>
+            </table>
+            </form>
+        </div>
+    </div>
+{% include 'common/bottom.html' %}

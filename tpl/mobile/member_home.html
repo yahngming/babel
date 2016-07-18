@@ -1,0 +1,30 @@
+{% include 'common/head.html' %}
+{% include 'common/top.html' %}
+    <div id="Main">
+        {% if one %}
+        <div class="cell">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%"><tr>
+                <td valign="top" class="avatar">{{ one|avatar:"normal" }}</td>
+                <td style="padding-left: 8px" valign="top">
+                    <h1>{{ one.username|escape }}</h1>
+                    <div class="sep10"></div>
+                    {{ l10n.num }} {{ one.num }} {{ l10n.member_created }} {{ one.created|timezone:8|date:"Y-n-j" }}
+                </td>
+                </tr>
+            </table>
+        </div>
+        {% for topic in topics %}
+            <div class="cell">
+                <table cellpadding="5" cellspacing="0" border="0">
+                    <tr>
+                        <td width="80" align="right">{% if topic.node %}<a href="/go/{{ topic.node.name }}">{{ topic.node.title }}</a>{% endif %}</td>
+                        <td align="left"><a href="/t/{{ topic.num }}#reply{{ topic.replies }}">{{ topic.title|escape }}</a>{% ifequal topic.replies 0 %}{% else %}<small class="fade"> &nbsp;{{ topic.replies }} {{ l10n.replies }}</small>{% endifequal %}</td>
+                    </tr>
+                </table>
+            </div>
+        {% endfor %}
+        {% else %}
+        {% include 'common/404.html' %}
+        {% endif %}
+    </div>
+{% include 'common/bottom.html' %}

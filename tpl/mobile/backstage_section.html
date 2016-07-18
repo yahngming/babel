@@ -1,0 +1,18 @@
+{% include 'common/head.html' %}
+{% include 'common/top.html' %}
+    <div id="Main">
+        {% if section %}
+        <div class="cell">
+            <a href="/backstage/new/node/{{ section.name }}">{{ l10n.add_new_node }}</a>
+            <div class="sep10"></div>
+            <ul>
+                {% for node in nodes %}
+                <li><a href="/backstage/node/{{ node.name }}">{{ node.title }}</a></li>
+                {% endfor %}
+            </ul>
+            </div class="cell">
+        {% else %}
+        {% include 'common/404.html' %}
+        {% endif %}
+    </div>
+{% include 'common/bottom.html' %}

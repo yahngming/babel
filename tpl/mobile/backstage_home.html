@@ -1,0 +1,16 @@
+{% include 'common/head.html' %}
+{% include 'common/top.html' %}
+    <div id="Main">
+        <div class="cell">
+            <a href="/backstage/site">{{ l10n.site_settings }}</a>
+        </div>
+        <div class="cell">
+            {% for node in nodes%}
+            <a href="/backstage/node/{{ node.name }}">{{ node.title }}</a>
+            {% endfor %}
+        </div>
+        <div class="cell">
+            {{ member_total }} {{ l10n.total_members }}
+        </div>
+    </div>
+{% include 'common/bottom.html' %}

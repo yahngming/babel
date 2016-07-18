@@ -1,0 +1,31 @@
+{% include 'common/head.html' %}
+{% include 'common/top.html' %}
+    <div id="Wrapper">
+    <div id="Main">
+        <div id="Sidebar">
+        </div>
+        <div id="Rightbar">
+            {% include 'rightbar/user.html' %}
+            <div class="sep20"></div>
+            {% include 'rightbar/nodes.html' %}
+            <div class="sep20"></div>
+            {% include 'rightbar/ads.html' %}
+        </div>
+        <div id="Content">
+            <div class="box" id="topics_index">
+                {% include 'common/topics_index.html' %}
+                <div class="inner" align="center">
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <tr>
+                            <td width="120" align="left">{% ifnotequal page_current 1 %}{% ifequal page_current 2 %}<a href="/" class="page_normal">{{ l10n.previous }}</a>{% endifequal %}{% ifnotequal page_current 2 %}<a href="/changes?p={{ page_prev }}" class="page_normal">{{ l10n.previous }}</a>{% endifnotequal %}{% endifnotequal %}</td>
+                            <td width="auto" align="center"><strong class="fade">{{ page_current }}/{{ pages }}</strong></td>
+                            <td width="120" align="right">{% ifnotequal page_current pages %}<a href="/changes?p={{ page_next }}" class="page_normal">{{ l10n.next }}</a>{% endifnotequal %}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    <div class="c"></div>
+    </div>
+    </div>
+{% include 'common/bottom.html' %}

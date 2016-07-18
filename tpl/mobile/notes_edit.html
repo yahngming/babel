@@ -1,0 +1,22 @@
+{% include 'common/head.html' %}
+{% include 'common/top.html' %}
+    <div id="Main">
+        <div class="cell">
+            <form method="post" action="/notes/{{ note.num }}/edit">
+            {% if errors %}
+            <strong>{{ l10n.resolve_errors }}</strong>
+            <div class="sep10"></div>
+            <ul>
+                {% if note_content_error %}
+                <li>{{ note_content_error_message }}</li>
+                {% endif %}
+            </ul>
+            <div class="sep5"></div>
+            {% endif %}
+            <textarea class="mll" name="content">{{ note_content|escape }}</textarea>
+            <div class="sep10"></div>
+            <input type="submit" value="{{ l10n.save }}" class="btn" />
+            </form>
+        </div>
+    </div>
+{% include 'common/bottom.html' %}

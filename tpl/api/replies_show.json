@@ -1,0 +1,20 @@
+[
+    {% for reply in replies %}
+    {% ifequal forloop.counter 1 %}{% else %},{% endifequal %}
+    {
+        "id" : {{ reply.num }},
+        "content" : "{{ reply.content|escapejs }}",
+        "content_rendered" : "{{ reply.content_rendered|escapejs}}",
+        "member" : {
+            "id" : {{ reply.member.num }},
+            "username" : "{{ reply.member.username }}",
+            "tagline" : "{{ reply.member.tagline }}",
+            "avatar_mini" : "{{ reply.member.avatar_mini_url }}",
+            "avatar_normal" : "{{ reply.member.avatar_normal_url }}",
+            "avatar_large" : "{{ reply.member.avatar_large_url }}"
+        },
+        "created" : "{{ reply.created }}",
+        "last_modified" : "{{ reply.last_modified }}"
+    }
+    {% endfor %}
+]

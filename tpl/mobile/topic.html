@@ -1,0 +1,63 @@
+{% include 'common/head.html' %}
+{% include 'common/top.html' %}
+    <div id="Main">
+        <div class="cell">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%"><tr>
+                <td valign="top" class="avatar"><a href="/member/{{ topic.created_by }}">{{ topic.member|avatar:"normal" }}</a></td>
+                <td style="padding-left: 5px" valign="top">
+                    <div class="fr"><span class="created">{% if member %}{% ifequal member.level 0 %}<a href="/edit/topic/{{ topic.num }}">EDIT</a> | <a href="#;" onclick="if (confirm('{{ l10n.sure_to_delete }} #{{ topic.num }} - {{ topic.title|escape }}')) { location = '/delete/topic/{{ topic.num }}'; }">DEL</a>{% endifequal %}{% endif %}</span></div>
+                    <span class="created">{% if topic.node_name %}<a href="/go/{{ topic.node_name }}">{{ topic.node_title|escape }}</a>{% endif %} &nbsp;•&nbsp; <a href="/member/{{ topic.created_by|escape }}">{{ topic.created_by|escape }}</a></span>
+                    <h1>{{ topic.title|escape }}</h1>
+                    <span class="created">{{ topic.created|timesince }} {{ l10n.ago }}{% ifnotequal topic.hits 0 %} &nbsp;•&nbsp; {{ topic.hits }} {{ l10n.hits }}{% endifnotequal %}</span>
+                </td>
+            </tr></table>
+        </div>
+        <div class="cell">
+            {{ topic.content|escape|youtube|youku|tudou|sinaimg|picasa|mentions|instagram|imgur|imgly|gist|flickr|face|bilibili|autolink|linebreaksbr }}
+        </div>
+        <div class="cell">
+            <strong class="created"><div class="fr">{% if topic.stars %}{{ topic.stars }} {{ l10n.favorites }} &nbsp; {% endif %}{% if favorited %}<a href="/unfavorite/topic/{{ topic.num }}?t={{ member.username_lower_md5 }}" class="op">{{ l10n.unfavorite }}</a>{% else %}<a href="/favorite/topic/{{ topic.num }}?t={{ member.username_lower_md5 }}" class="op">{{ l10n.favorite }}</a>{% endif %}</div>{{ topic.replies }} {{ l10n.replies }}</strong>
+        </div>
+        <script type="text/javascript">
+            is_admin = {{ is_admin }};
+            replies_keys = new Array(); replies_ids = new Array(); replies_parents = new Array();
+        </script>
+        <div id="replies">
+            {{ r }}
+        </div>
+        {% if member %}
+        <script type="text/javascript">
+        blocked = [{{ blocked }}];
+        $("#replies").children('.cell').each( function(index) {
+            for (i in blocked) {
+                if ($(this).hasClass('from_' + blocked[i])) {
+                    $(this).css('display', 'none');
+                }
+            }
+            if (is_admin) {
+                $(this).find("span.ops").html(' &nbsp; <a href="/backstage/tidy/reply/' + replies_ids[index] + '">TIDY</a> &nbsp; <a href="/edit/reply/' + replies_ids[index] + '">EDIT</a> &nbsp; <a href="#;" onclick="if (confirm(\'{{ l10n.confirm_delete }}\')) { location.href = \'/backstage/remove/reply/' + replies_keys[index] + '?t={{ member.created_ts }}\'; }">DEL</a> &nbsp;<img src="/static/img/' + (replies_parents[index] ? 'dot_green.png' : 'dot_red.png') + '" align="absmiddle" />');
+            }
+        });
+        </script>
+        {% endif %}
+        {% if member %}
+        <div class="cell">
+            {% if errors %}
+            <strong class="black">{{ reply_content_error_message }}</strong>
+            {% else %}
+            {% endif %}
+            <form action="/t/{{ topic.num }}" method="post">
+                <div class="sep5"></div>
+                <textarea name="content" class="mll">{{ reply_content|escape }}</textarea>
+                <div class="sep5"></div>
+                <input type="submit" value="{{ l10n.reply }}" class="btn" />
+                <!-- <a href="{{ l10n.upload_to }}" class="top">{{ l10n.upload_image }}</a> -->
+            </form>
+        </div>
+        {% else %}
+        <div class="cell">
+            {{ l10n.visitor_tip }}
+        </div>
+        {% endif %}
+    </div>
+{% include 'common/bottom.html' %}

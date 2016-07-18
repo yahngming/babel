@@ -1,0 +1,146 @@
+application: kangmiuliti
+version: 1
+runtime: python
+api_version: 1
+
+default_expiration: "10d"
+
+derived_file_type:
+- python_precompiled
+
+handlers:
+- url: /favicon.ico
+  static_files: static/img/favicon.ico
+  upload: static/img/favicon.ico
+
+- url: /favicon.png
+  static_files: static/img/favicon.png
+  upload: static/img/favicon.png
+
+- url: /apple-touch-icon.png
+  static_files: static/img/apple-touch-icon.png
+  upload: static/img/apple-touch-icon.png
+    
+- url: /static
+  static_dir: static
+
+- url: /settings
+  script: member.py
+
+- url: /settings/.*
+  script: member.py
+
+- url: /member/.*
+  script: member.py
+
+- url: /backstage
+  script: backstage.py
+
+- url: /backstage/.*
+  script: backstage.py
+
+- url: /new/.*
+  script: topic.py
+  
+- url: /t/.*
+  script: topic.py
+
+- url: /r/.*
+  script: topic.py
+  
+- url: /edit/.*
+  script: topic.py
+  
+- url: /delete/.*
+  script: topic.py
+
+- url: /hit/.*
+  script: topic.py
+
+- url: /index/.*
+  script: topic.py
+  
+- url: /(avatar|navatar)/.*
+  script: avatar.py
+
+- url: /index.xml
+  script: feed.py
+  
+- url: /feed/(.+).xml
+  script: feed.py
+
+- url: /about
+  script: page.py
+  
+- url: /faq
+  script: page.py
+
+- url: /contact
+  script: page.py
+  
+- url: /calendar
+  script: page.py
+
+- url: /notes/?
+  script: notes.py
+
+- url: /notes/.*
+  script: notes.py
+
+- url: /api/.*
+  script: api.py
+
+- url: /mapreduce(/.*)?
+  script: mapreduce/main.py
+  login: admin
+
+- url: /remote_api
+  script: $PYTHON_LIB/google/appengine/ext/remote_api/handler.py
+  login: admin
+
+- url: /block/(.*)
+  script: member.py
+
+- url: /unblock/(.*)
+  script: member.py
+
+- url: /favorite/(.*)
+  script: favorite.py
+
+- url: /unfavorite/(.*)
+  script: favorite.py
+
+- url: /follow/(.*)
+  script: favorite.py
+
+- url: /unfollow/(.*)
+  script: favorite.py
+
+- url: /my/(.*)
+  script: my.py
+
+- url: /add/star/(.*)
+  script: queue.py
+  login: admin
+
+- url: /minus/star/(.*)
+  script: queue.py
+  login: admin
+
+- url: /sso/(.*)
+  script: sso.py
+
+- url: /notifications/?
+  script: notifications.py
+
+- url: /n/([a-z0-9]+).xml
+  script: notifications.py
+    
+- url: /notifications/(.*)
+  script: notifications.py
+
+- url: .*
+  script: main.py
+
+builtins:
+- datastore_admin: off

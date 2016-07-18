@@ -1,0 +1,61 @@
+{% include 'common/head.html' %}
+{% include 'common/top.html' %}
+    <div id="Wrapper">
+    <div id="Main">
+        <div id="Sidebar">
+        </div>
+        <div id="Rightbar">
+            {% include 'rightbar/user.html' %}
+            <div class="sep20"></div>
+            {% include 'rightbar/nodes.html' %}
+            <div class="sep20"></div>
+            {% include 'rightbar/info.html' %}
+            <div class="sep20"></div>
+            {% include 'rightbar/stats.html' %}
+            <div class="sep20"></div>
+            {% include 'rightbar/ads.html' %}
+        </div>
+        <div id="Content">
+            <div class="box" id="topics_index">
+                {{ home }}
+                {% if member %}
+                <script type="text/javascript">
+                blocked = [{{ blocked }}];
+                $("#topics_index").children('.cell').each( function(index) {
+                    for (i in blocked) {
+                        if ($(this).hasClass('from_' + blocked[i])) {
+                            $(this).css('display', 'none');
+                        }
+                    }
+                    {% if member %}
+                    if ($(this).hasClass('from_{{ member.num }}')) {
+                        $(this).find('a.count').addClass('count_orange');
+                    } else {
+                        $(this).find('a.count').addClass('count_livid');
+                    }
+                    {% else %}
+                    $(this).find('a.count').addClass('count_livid');
+                    {% endif %}
+                });
+                </script>
+                {% endif %}
+                <div class="inner" align="right">
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <tr>
+                            <td width="120" align="left"></td>
+                            <td width="auto" align="center"></td>
+                            <td width="120" align="right"><a href="/changes?p=2" class="page_normal">{{ l10n.next }}</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="sep20"></div>
+            <div class="box">
+                <div class="cell"><span class="fade"><strong>{{ site.title }}</strong> / {{ l10n.nodes_portal }}</span></div>
+                {{ c }}
+            </div>
+        </div>
+    <div class="c"></div>
+    </div>
+    </div>
+{% include 'common/bottom.html' %}

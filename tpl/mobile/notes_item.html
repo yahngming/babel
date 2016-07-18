@@ -1,0 +1,11 @@
+{% include 'common/head.html' %}
+{% include 'common/top.html' %}
+    <div id="Main">
+        <div class="cell" style="padding-top: 10px; padding-bottom: 10px; padding-left: 10px; padding-right: 10px;">
+            <strong>{{ note.title|escape }}</strong>
+            <div class="sep10"></div>
+            {{ note.body|escape|urlize|linebreaksbr }}
+        </div>
+        <div class="cell"><div class="fr"><input type="button" value="{{ l10n.delete }}" class="btn" onclick="if (confirm('{{ l10n.confirm_delete }}')) { location.href = '/notes/{{ note.num }}/erase'; }" /></div><input type="button" value="{{ l10n.edit }}" class="btn" onclick="location.href = '/notes/{{ note.num }}/edit';" /></div>
+    </div>
+{% include 'common/bottom.html' %}

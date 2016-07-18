@@ -1,0 +1,11 @@
+<div id="Top">
+    {% if member %}
+        <div id="Member">{% ifequal member.notifications 0 %}{% else %}<a href="/notifications"><img src="/static/img/dot_orange.png" align="absmiddle" />&nbsp;<strong>{{ member.notifications }}</strong></a>{% endifequal %}<a href="/member/{{ member.username_lower|escape }}" class="white">{{ member|avatar:"mini" }}</a> &nbsp; <a href="/settings" class="top"><div id="GearIcon"></div></a>{% ifequal member.num 1 %} &nbsp; <a href="/backstage" class="top"><div id="BurnIcon"></div></a>{% endifequal %} &nbsp; <a href="/signout" class="top"><div id="EjectIcon"></div></a> &nbsp;</div>
+    {% else %}
+        <div id="Member" style="margin-top: 12px;"><a href="/signin" class="top">{{ l10n.signin }}</a> | <a href="/signup" class="top">{{ l10n.signup }}</a> &nbsp;</div>
+    {% endif %}
+    <a href="/" class="top">
+        <img src="/favicon.png" width="23" height="23" border="0" style="display: block; float: left; margin-top: 9px; margin-left: 11px;" />
+        <div style="display: block; float: left; margin-top: 11px; padding-left: 9px; font-weight: 900; letter-spacing: 2px;">{{ site.title }}</div>
+    </a>
+</div>

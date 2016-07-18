@@ -1,0 +1,25 @@
+{% include 'common/head.html' %}
+{% include 'common/top.html' %}
+    <div id="Main">
+        <div id="topics_index">
+        {{ home }}
+        <div class="cell" style="text-align: center;">
+            <div class="fr"><a href="/changes?p=2" class="page_normal">{{ l10n.next }}</a></div>&nbsp;
+        </div>
+        </div>
+        {% if member %}
+        <script type="text/javascript">
+        blocked = [{{ blocked }}];
+        $("#topics_index").children('.cell').each( function(index) {
+            for (i in blocked) {
+                if ($(this).hasClass('from_' + blocked[i])) {
+                    $(this).css('display', 'none');
+                }
+            }
+        });
+        </script>
+        {% endif %}
+        <div class="section">{{ l10n.nodes_portal }}</div>
+        {{ c }}
+    </div>
+{% include 'common/bottom.html' %}

@@ -1,0 +1,21 @@
+<div class="box">
+    <div class="cell">
+        <span class="fade">注意</span>
+    </div>
+    {% ifequal member.level 0 %}
+    <div class="inner">修改功能只为root用户所设，在使用修改功能时，请保持以下原则：
+    <div class="sep10"></div>
+    <ul>
+        <li>不得改变原主题内容。</li>
+        <li>只允许修复因书写导致的链接不可点击或错乱问题。</li>
+        <li>不对发布超过4小时的主题进行任何形式的修改。</li>
+    </ul>
+    </div>
+    {% else %}
+    <div class="inner">
+        在新主题创建后的5分钟内，可以自由编辑。
+        <div class="sep5"></div>
+        <strong>距离本主题的编辑权限关闭还有<span class="orange">{{ ttl }}</span>秒</strong>
+    </div>
+    {% endifequal %}
+</div>

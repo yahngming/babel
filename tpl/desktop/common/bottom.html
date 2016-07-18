@@ -1,0 +1,37 @@
+<div id="Bottom">
+    <div id="BottomMain">
+        <div class="fr" align="right"><table cellpadding="10" cellspacing="0" border="0"><tr>
+        <td><img src="/favicon.png" width="64" height="64" border="0" /></td>
+        </tr></table></div>
+        <strong><a href="/about" class="dark">{{ l10n.about }}</a></strong> &nbsp; | &nbsp; <strong><a href="/faq" class="dark">{{ l10n.faq }}</a></strong> &nbsp; | &nbsp; <strong><a href="/index.xml" class="dark">{{ l10n.rss }}</a></strong> &nbsp; | &nbsp; <strong><a href="/contact" class="dark">{{ l10n.contact }}</a></strong>
+        <div class="sep20"></div>
+        <span class="fade">{{ site.title }}</span>
+        <div class="sep5"></div>
+        <span class="fade">{{ site.slogan }}</span>
+        <div class="sep20"></div>
+        <small>Powered by Project Babel {{ system_version }}<br />Hosted on Google App Engine</small>
+    </div>
+    {% if site.analytics %}
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '{{ site.analytics }}']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    {% endif %}
+    {% if member %}
+    {% ifequal member.use_my_css 1 %}
+    <style type="text/css">
+    {{ member.my_css }}
+    </style>
+    {% endifequal %}
+    {% endif %}
+</div>
+</body>
+</html>

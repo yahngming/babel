@@ -1,0 +1,58 @@
+{% include 'common/head.html' %}
+{% include 'common/top.html' %}
+    <div id="Main">
+        <div class="cell">
+            <form action="/signup" method="post">
+            {% if errors %}
+            <strong>{{ l10n.resolve_errors }}</strong>
+            <div class="sep10"></div>
+            <ul>
+                {% if member_username_error %}
+                <li>{{ member_username_error_message }}</li>
+                {% endif %}
+                {% if member_password_error %}
+                <li>{{ member_password_error_message }}</li>
+                {% endif %}
+                {% if member_email_error %}
+                <li>{{ member_email_error_message }}</li>
+                {% endif %}
+            </ul>
+            <div class="sep5"></div>
+            {% endif %}
+            <table cellpadding="5" cellspacing="0" border="0">
+                <tr>
+                    <td width="80" align="right">
+                        {{ l10n.username }}
+                    </td>
+                    <td width="200" align="left">
+                        <input type="text" class="sl" name="username" value="{{ member_username|escape }}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td width="80" align="right">
+                        {{ l10n.password }}
+                    </td>
+                    <td width="200" align="left">
+                        <input type="password" class="sl" name="password" value="{{ member_password|escape }}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td width="80" align="right">
+                        {{ l10n.email }}
+                    </td>
+                    <td width="200" align="left">
+                        <input type="text" class="sl" name="email" value="{{ member_email|escape }}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td width="80" align="right">
+                    </td>
+                    <td width="200" align="left">
+                        <input type="submit" value="{{ l10n.signup }}" class="btn" />
+                    </td>
+                </tr>
+            </table>
+            </form>
+        </div>
+    </div>
+{% include 'common/bottom.html' %}

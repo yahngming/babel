@@ -1,0 +1,48 @@
+<div id="Top" class="toTop">
+    <script type="text/javascript">
+        $(function() {
+            $('.toTop').click(function() {
+                if(event.srcElement.className == 'toTop') {
+                    $('html, body').animate({scrollTop:0},255);
+                    return false;
+                }
+            });	
+        });
+        var dispatch = function() {
+            q = document.getElementById("q");
+            if (q.value != "") {
+                window.open('http://www.google.com/search?q=site:{{ site.domain }}/t%20' + q.value, "_blank");
+                return false;
+            } else {
+                return false;
+            }
+        }
+    </script>
+    <div id="TopMain" class="toTop">
+        <a href="/" class="top">
+        <img src="/favicon.png" width="23" height="23" border="0" style="display: block; float: left; margin-top: 9px; margin-left: 20px;" />
+        <div style="display: block; float: left; margin-top: 10px; margin-right: 20px; padding-left: 10px; font-weight: 900; letter-spacing: 2px;">{{ site.title }}</div>
+        </a>
+        <div id="Navigation" class="toTop">
+            {% if member %}
+            <ul>
+                <li><a href="/member/{{ member.username }}" class="top">{{ member.username }}</a></li>
+                <li><a href="javascript:void(function(){var%20d%20=%20document,a%20=%20'setAttribute',s%20=%20d.createElement('script');s[a]('type','text/javascript');s[a]('src','/static/js/calendar.js');d.head.appendChild(s);})();" class="top">{{ l10n.calendar }}</a></li>
+                <li><a href="/settings" class="top">{{ l10n.settings }}</a></li>
+                {% ifequal member.level 0 %}
+                <li><a href="/backstage" class="top">{{ l10n.backstage }}</a></li>
+                {% endifequal %}
+                <li><a href="/signout" class="top">{{ l10n.signout }}</a></li>
+            </ul>
+            {% else %}
+            <ul>
+                <li><a href="/signup" class="top">{{ l10n.signup }}</a></li>
+                <li><a href="/signin" class="top">{{ l10n.signin }}</a></li>
+            </ul>
+            {% endif %}
+        </div>
+        <div id="Search" class="toTop">
+            <form onsubmit="return dispatch()"><!--<input type="text" class="search" maxlength="40" name="q" value="{{ q|escape }}" id="q" /><input type="submit" class="super normal button" value="Search" style="-moz-border-radius: 0px 5px 5px 0px; border: none;" />--><div style="width: 276px; height: 28px; background-image: url('/static/img/qbar.png'); background-repeat: no-repeat; display: inline-block;"><input type="text" maxlength="40" name="q" id="q" value="{{ q|escape }}" /></div></form>
+        </div>
+    </div>
+</div>

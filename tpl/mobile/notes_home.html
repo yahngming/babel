@@ -1,0 +1,11 @@
+{% include 'common/head.html' %}
+{% include 'common/top.html' %}
+    <div id="Main">
+        <div class="cell"><input type="button" value="{{ l10n.new }}" onclick="location.href = '/notes/new';" class="btn" /></div>
+        {% for note in notes %}
+        <div class="cell" style="padding-top: 10px; padding-bottom: 10px; padding-left: 10px; padding-right: 8px;" onclick="location.href = '/notes/{{ note.num }}';"><div class="fr"><img src="/static/img/next.png" /></div>
+            {{ note.title|escape }}
+        </div>
+        {% endfor %}
+    </div>
+{% include 'common/bottom.html' %}

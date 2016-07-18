@@ -1,0 +1,22 @@
+import os
+
+mobileme_enabled = False
+mobileme_username = ''
+mobileme_password = ''
+
+upyun_enabled = False
+upyun_username = ''
+upyun_password = ''
+upyun_bucket = ''
+
+fts_enabled = False
+fts_server = ''
+fts_username = ''
+fts_password = ''
+
+recaptcha_public_key = ''
+recaptcha_private_key = ''
+
+daydream_secret = ''
+
+site_key = ''
