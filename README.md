@@ -1,3 +1,5 @@
-# Project Babel 2
+# Project Babel 2S
 
-This is a heavily minimized and tweaked Project Babel 2 port which powers [AIREN](http://bbs.airen.us/) forum.
+* Based on Project Babel 2
+* Powering bbs.airen.us
+* Heavily minimized and tweaked
